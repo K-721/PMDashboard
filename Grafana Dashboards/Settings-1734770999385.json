@@ -1,0 +1,1341 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 63,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "uid": "ee3snnhkpmfb4d"
+      },
+      "description": "A proof-of-concept dashboard designed for real-time monitoring of energy usage and costs, enabling data-driven decisions to optimize power efficiency in industrial settings.",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 20,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "afterRender": "",
+        "content": "<div style=\"display: flex; align-items: center; height: 100%;\">\n  <h1 style=\"font-family: 'Inter', sans-serif; font-weight: 600; font-size: 2em; color: #d3d3d3; margin: 0;\">\n    Settings Configuration\n  </h1>\n</div>\n",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "markdown"
+        },
+        "editors": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "everyRow",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "5.4.0",
+      "targets": [
+        {
+          "frame": {
+            "fields": [
+              {
+                "config": {},
+                "name": "title",
+                "type": "string",
+                "values": [
+                  ""
+                ]
+              }
+            ],
+            "meta": {}
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ae2w4y8cxm134d"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
+        "dashboardVariable": "pg_uid",
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "Pages"
+      },
+      "pluginVersion": "3.6.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-static-datasource",
+        "uid": "ee3snnhkpmfb4d"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 2
+      },
+      "id": 5,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "all",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "// This function runs when the element value is changed\r\nconst kwh_rate = context.panel.fields.kwh_rate;\r\nconst target_usage = context.panel.fields.target_usage;\r\n\r\n// Display the updated values in a notification or in the panel directly\r\ncontext.grafana.notifySuccess([\r\n  'Values Updated',\r\n  `New kWh Rate: ${kwh_rate}\\nNew Target Usage: ${target_usage}`\r\n]);\r\n\r\n// Optionally, you can also log it to the console for debugging purposes\r\nconsole.log(`Updated Energy Rate: ${kwh_rate}, Updated Target Usage: ${target_usage}`);\r\n",
+        "elements": [
+          {
+            "allowCustomValue": false,
+            "id": "user_id",
+            "labelWidth": 18,
+            "options": [
+              {
+                "icon": "users-alt",
+                "id": "Admin",
+                "label": "Admin",
+                "type": "string",
+                "value": "Admin"
+              },
+              {
+                "icon": "user",
+                "id": "Tenant 1",
+                "label": "Tenant 1",
+                "type": "string",
+                "value": "Tenant 1"
+              },
+              {
+                "icon": "user",
+                "id": "Tenant 2",
+                "label": "Tenant 2",
+                "type": "string",
+                "value": "Tenant 2"
+              },
+              {
+                "icon": "user",
+                "id": "Tenant 3",
+                "label": "Tenant 3",
+                "type": "string",
+                "value": "Tenant 3"
+              },
+              {
+                "icon": "user",
+                "id": "Tenant 4",
+                "label": "Tenant 4",
+                "type": "string",
+                "value": "Tenant 4"
+              },
+              {
+                "icon": "user",
+                "id": "Tenant 5",
+                "label": "Tenant 5",
+                "type": "string",
+                "value": "Tenant 5"
+              }
+            ],
+            "optionsSource": "Custom",
+            "section": "",
+            "title": "User",
+            "tooltip": "",
+            "type": "select",
+            "uid": "581c6bea-8957-4c4a-add6-f01f91d180bb",
+            "unit": "",
+            "value": "Admin",
+            "width": 16
+          },
+          {
+            "disabled": false,
+            "id": "kwh_rate",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "max": 13,
+            "min": 9,
+            "options": [],
+            "section": "",
+            "title": "Energy Cost Rate",
+            "tooltip": "",
+            "type": "number",
+            "uid": "a5328581-0c4d-4853-87a2-806ebaed3b49",
+            "unit": "PHP",
+            "value": 11.7882,
+            "width": 16
+          },
+          {
+            "background": "",
+            "disabled": false,
+            "fieldName": "target_usage",
+            "id": "target_usage",
+            "labelBackground": "",
+            "labelColor": "#8AB8FF",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "Target Usage",
+            "tooltip": "",
+            "type": "number",
+            "uid": "79645549-4d0e-420a-a6d7-64887737d6c5",
+            "unit": "kWh",
+            "value": 32000,
+            "width": 16
+          }
+        ],
+        "initial": {
+          "code": "console.log(context.panel.data, context.panel.response, context.panel.initial, context.panel.elements);\n\nreturn;\n\n/**\n * Data Source\n * Requires form elements to be defined\n */\nconst dataQuery = context.utils.toDataQueryResponse(context.panel.response);\nconsole.log(dataQuery);",
+          "contentType": "application/json",
+          "datasource": "grafana-postgresql-datasource-1",
+          "getPayload": "return {}",
+          "highlight": true,
+          "highlightColor": "blue",
+          "method": "-",
+          "payload": {},
+          "url": "http://localhost:3001/"
+        },
+        "layout": {
+          "orientation": "vertical",
+          "padding": 10,
+          "sectionVariant": "default",
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "secondary"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.locationService.reload();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "secondary"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "sync": false,
+        "update": {
+          "code": "\nconst table = \"user_inputs\"; // Specify the table name explicitly\n\n// Safely access user_id\nconst user_id = context.element?.value?.user_id;\nconst kwh_rate = parseFloat(document.getElementById('kwh_rate')?.value);\nconst target_usage = parseInt(document.getElementById('target_usage')?.value);\n\n// Prepare the data payload\nconst data = {\n  table,          // Specify the target table for the API\n  user_id,\n  kwh_rate,\n  target_usage\n};\n\nfetch('http://localhost:3001/', {\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify(data),\n})\n  .then(response => {\n    if (response.ok) {\n      context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n      context.grafana.locationService.reload();\n    } else {\n      context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n    }\n  })\n  .catch(error => {\n    context.grafana.notifyError(['Update', 'Error occurred: ' + error.message]);\n  });\n",
+          "confirm": true,
+          "contentType": "application/json",
+          "datasource": "grafana-postgresql-datasource-1",
+          "getPayload": "const payload = {};\n\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n\n  payload[element.id] = element.value;\n})\n\nreturn payload;",
+          "header": [],
+          "method": "POST",
+          "payload": {
+            "editorMode": "builder",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "SELECT user_id, kwh_rate, target_usage FROM user_inputs LIMIT 50 ",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [
+                    {
+                      "name": "user_id",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                },
+                {
+                  "parameters": [
+                    {
+                      "name": "kwh_rate",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                },
+                {
+                  "parameters": [
+                    {
+                      "name": "target_usage",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "user_inputs"
+          },
+          "payloadMode": "all",
+          "url": "http://localhost:3001/"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "4.8.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-static-datasource",
+            "uid": "ee3snnhkpmfb4d"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "User Inputs",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ae2w4y8cxm134d"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 7,
+        "x": 6,
+        "y": 2
+      },
+      "id": 8,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "modified",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "",
+        "elements": [
+          {
+            "allowCustomValue": false,
+            "id": "meter_id",
+            "labelWidth": 18,
+            "options": [
+              {
+                "icon": "plus-square",
+                "id": "1",
+                "label": "1",
+                "type": "number",
+                "value": 1
+              },
+              {
+                "icon": "plus-square",
+                "id": "2",
+                "label": "2",
+                "type": "number",
+                "value": 2
+              },
+              {
+                "icon": "plus-square",
+                "id": "3",
+                "label": "3",
+                "type": "number",
+                "value": 3
+              },
+              {
+                "icon": "plus-square",
+                "id": "4",
+                "label": "4",
+                "type": "number",
+                "value": 4
+              },
+              {
+                "icon": "plus-square",
+                "id": "5",
+                "label": "5",
+                "type": "number",
+                "value": 5
+              }
+            ],
+            "optionsSource": "Custom",
+            "section": "",
+            "title": "Meter ID",
+            "tooltip": "",
+            "type": "select",
+            "uid": "2a104dcc-3393-4fe6-b9a0-4e4d2bc85e92",
+            "unit": "",
+            "value": "",
+            "width": 27
+          },
+          {
+            "allowCustomValue": false,
+            "background": "",
+            "id": "day",
+            "labelColor": "",
+            "labelWidth": 18,
+            "options": [
+              {
+                "icon": "calendar-alt",
+                "id": "sun",
+                "label": "Sunday",
+                "type": "string",
+                "value": "sun"
+              },
+              {
+                "icon": "calendar-alt",
+                "id": "mon",
+                "label": "Monday",
+                "type": "string",
+                "value": "mon"
+              },
+              {
+                "icon": "calendar-alt",
+                "id": "tues",
+                "label": "Tuesday",
+                "type": "string",
+                "value": "tues"
+              },
+              {
+                "icon": "calendar-alt",
+                "id": "wednes",
+                "label": "Wednesday",
+                "type": "string",
+                "value": "wednes"
+              },
+              {
+                "icon": "calendar-alt",
+                "id": "thurs",
+                "label": "Thursday",
+                "type": "string",
+                "value": "thurs"
+              },
+              {
+                "icon": "calendar-alt",
+                "id": "fri",
+                "label": "Friday",
+                "type": "string",
+                "value": "fri"
+              },
+              {
+                "icon": "calendar-alt",
+                "id": "sat",
+                "label": "Saturday",
+                "type": "string",
+                "value": "sat"
+              }
+            ],
+            "optionsSource": "Custom",
+            "section": "",
+            "title": "Day",
+            "tooltip": "",
+            "type": "select",
+            "uid": "2b2c821b-76fe-4cef-bec1-b52ede0ccc2d",
+            "unit": "",
+            "value": "",
+            "width": 27
+          },
+          {
+            "background": "",
+            "id": "peak_rate",
+            "labelColor": "",
+            "labelWidth": 18,
+            "section": "mon",
+            "title": "Peak Rate",
+            "tooltip": "",
+            "type": "number",
+            "uid": "ff11573b-3ae0-4c66-b9ae-f5d3beecb0be",
+            "unit": "",
+            "value": 0,
+            "width": 27
+          },
+          {
+            "background": "",
+            "id": "offpeak_rate",
+            "labelColor": "",
+            "labelWidth": 18,
+            "section": "mon",
+            "title": "Off-Peak Rate",
+            "tooltip": "",
+            "type": "number",
+            "uid": "2dd47633-2513-4c02-a143-457039a13d92",
+            "unit": "",
+            "value": 0,
+            "width": 27
+          },
+          {
+            "background": "",
+            "id": "peak_hour_start",
+            "labelColor": "#CA95E5",
+            "labelWidth": 18,
+            "section": "mon",
+            "showIf": "",
+            "title": "Peak Hour Start",
+            "tooltip": "",
+            "type": "time",
+            "uid": "c4f92338-7b67-4980-b6bf-b21bae5050a9",
+            "unit": "",
+            "value": "",
+            "width": 10
+          },
+          {
+            "background": "",
+            "id": "peak_hour_end",
+            "labelColor": "#CA95E5",
+            "labelWidth": 18,
+            "section": "",
+            "title": "Peak Hour End",
+            "tooltip": "",
+            "type": "time",
+            "uid": "e81272b9-540b-4c8c-b668-8367e375794f",
+            "unit": "",
+            "value": "",
+            "width": 27
+          },
+          {
+            "background": "",
+            "id": "offpeak_hour_start",
+            "labelColor": "#8AB8FF",
+            "labelWidth": 18,
+            "section": "mon",
+            "title": "Off-Peak Hour Start",
+            "tooltip": "",
+            "type": "time",
+            "uid": "4c3ce6fb-7854-461f-a50c-1d8903782c60",
+            "unit": "",
+            "value": "",
+            "width": 27
+          },
+          {
+            "background": "",
+            "id": "off_peak_hour_end",
+            "labelBackground": "",
+            "labelColor": "",
+            "labelWidth": 18,
+            "section": "",
+            "title": "Off-Peak Hour End",
+            "tooltip": "",
+            "type": "time",
+            "uid": "3941185d-b749-429c-9416-d9829022f022",
+            "unit": "",
+            "value": "",
+            "width": 27
+          }
+        ],
+        "initial": {
+          "code": "console.log(context.panel.data, context.panel.response, context.panel.initial, context.panel.elements);\n\nreturn;\n\n/**\n * Data Source\n * Requires form elements to be defined\n */\nconst dataQuery = context.utils.toDataQueryResponse(context.panel.response);\nconsole.log(dataQuery);",
+          "contentType": "application/json",
+          "getPayload": "return {}",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "-",
+          "payload": {}
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "sectionVariant": "default",
+          "sections": [],
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.locationService.reload();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "sync": true,
+        "update": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.locationService.reload();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "getPayload": "const payload = {};\n\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n\n  payload[element.id] = element.value;\n})\n\nreturn payload;",
+          "method": "-",
+          "payload": "const payload = {};\n\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n\n  payload[element.id] = element.value;\n})\n\nreturn payload;",
+          "payloadMode": "all"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "4.8.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "Energy Rates & Operation Hour",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ae2w4y8cxm134d"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 8,
+        "x": 13,
+        "y": 2
+      },
+      "id": 9,
+      "options": {
+        "nestedObjects": [],
+        "tables": [],
+        "toolbar": {
+          "export": false
+        }
+      },
+      "pluginVersion": "1.6.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "Current Energy Rate & Operation Hour",
+      "type": "volkovlabs-table-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-static-datasource",
+        "uid": "ee3snnhkpmfb4d"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 0,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "all",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "//if (context.panel && context.panel.fields) {\r\n  const kwh_rate = context.panel.fields.kwh_rate;\r\n  const target_usage = context.panel.fields.target_usage;\r\n\r\n  //if (kwh_rate && target_usage) {\r\n    // Display the updated values in a notification\r\n    context.grafana.notifySuccess([\r\n      'Values Updated',\r\n      `New kWh Rate: ${kwh_rate}\\nNew Target Usage: ${target_usage}`\r\n    ]);\r\n\r\n    // Optionally log the updated values to the console for debugging\r\n    console.log('Fields:', context.panel.fields);\r\n    console.log(`Updated Energy Rate: ${kwh_rate}, Updated Target Usage: ${target_usage}`);\r\n\r\n    // This function runs when the element value is changed\r\n    const kwh_rate = context.panel.fields.kwh_rate;\r\n    const target_usage = context.panel.fields.target_usage;\r\n\r\n    // Display the updated values in a notification or in the panel directly\r\n    context.grafana.notifySuccess([\r\n      'Values Updated',\r\n      `New kWh Rate: ${kwh_rate}\\nNew Target Usage: ${target_usage}`\r\n    ]);\r\n\r\n    // Optionally, you can also log it to the console for debugging purposes\r\n    console.log(`Updated Energy Rate: ${kwh_rate}, Updated Target Usage: ${target_usage}`);\r\n",
+        "elements": [
+          {
+            "allowCustomValue": false,
+            "disabled": false,
+            "id": "meter_id",
+            "labelColor": "#DEB6F2",
+            "labelWidth": 18,
+            "options": [
+              {
+                "icon": "plus-square",
+                "id": "1",
+                "label": "1",
+                "type": "number",
+                "value": 1
+              },
+              {
+                "icon": "plus-square",
+                "id": "2",
+                "label": "2",
+                "type": "number",
+                "value": 2
+              },
+              {
+                "icon": "plus-square",
+                "id": "3",
+                "label": "3",
+                "type": "number",
+                "value": 3
+              },
+              {
+                "icon": "plus-square",
+                "id": "4",
+                "label": "4",
+                "type": "number",
+                "value": 4
+              },
+              {
+                "icon": "plus-square",
+                "id": "5",
+                "label": "5",
+                "type": "number",
+                "value": 5
+              }
+            ],
+            "optionsSource": "Custom",
+            "section": "general",
+            "title": "Meter ID",
+            "tooltip": "",
+            "type": "select",
+            "uid": "10c6ba61-68db-4dcd-8982-a0d8c3cc2140",
+            "unit": "",
+            "value": 4,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "max_v",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "max": 250,
+            "min": 100,
+            "options": [],
+            "section": "supply_voltage",
+            "title": "Maximum Voltage",
+            "tooltip": "",
+            "type": "number",
+            "uid": "a5328581-0c4d-4853-87a2-806ebaed3b49",
+            "unit": "V",
+            "value": 225,
+            "width": 14
+          },
+          {
+            "background": "",
+            "disabled": false,
+            "fieldName": "target_usage",
+            "id": "voltage_imbalance",
+            "labelBackground": "",
+            "labelColor": "#FFA6B0",
+            "labelWidth": 18,
+            "options": [],
+            "section": "supply_voltage",
+            "title": "Voltage Imbalance",
+            "tooltip": "",
+            "type": "number",
+            "uid": "79645549-4d0e-420a-a6d7-64887737d6c5",
+            "unit": "%",
+            "value": 3,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "warning_current",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "options": [],
+            "section": "line_current",
+            "title": "Warning Current",
+            "tooltip": "",
+            "type": "number",
+            "uid": "57bb597a-704f-467c-ba38-2cd4d25a661c",
+            "unit": "A",
+            "value": 31,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "trip_off_current",
+            "labelColor": "#FFA6B0",
+            "labelWidth": 18,
+            "options": [],
+            "section": "line_current",
+            "title": "Trip-Off Current",
+            "tooltip": "",
+            "type": "number",
+            "uid": "89444841-1161-432e-9acc-e981c570fa99",
+            "unit": "A",
+            "value": 33,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "kVAR_max",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "Maximum kVAR",
+            "tooltip": "",
+            "type": "number",
+            "uid": "adc818da-808d-4696-b20c-d5cace53dfb7",
+            "unit": "kVAR",
+            "value": 5,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "kVAR_imbalance",
+            "labelColor": "#FFA6B0",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "kVAR Imbalance",
+            "tooltip": "",
+            "type": "number",
+            "uid": "447938ef-92ab-4aa4-84b5-c125b19a3e28",
+            "unit": "%",
+            "value": 3,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "kW_max",
+            "labelBackground": "",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "Maximum kW",
+            "tooltip": "",
+            "type": "number",
+            "uid": "18a440ab-91c2-465f-9471-1d500c7528f2",
+            "unit": "kW",
+            "value": 72,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "kW_imbalance",
+            "labelColor": "#FFA6B0",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "kW Imbalance",
+            "tooltip": "",
+            "type": "number",
+            "uid": "9b1e13ea-fa36-4ff1-b205-6c0997e8dd06",
+            "unit": "%",
+            "value": 3,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "pf_max",
+            "labelBackground": "",
+            "labelColor": "#8AB8FF",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "Maximum PF",
+            "tooltip": "",
+            "type": "number",
+            "uid": "e60c77b1-dfea-4219-9786-8af1d4db66bc",
+            "unit": "",
+            "value": 0.9,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "vTHD_limit",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "vTHD Limit",
+            "tooltip": "",
+            "type": "number",
+            "uid": "9c81e40c-c0b5-4cb6-a56c-19d39761cc69",
+            "unit": "%",
+            "value": 4,
+            "width": 14
+          },
+          {
+            "disabled": false,
+            "id": "iTHD_limit",
+            "labelColor": "#FADE2A",
+            "labelWidth": 18,
+            "options": [],
+            "section": "",
+            "title": "ITHD Limit",
+            "tooltip": "",
+            "type": "number",
+            "uid": "38127c0e-aa96-4d8b-b9e5-4425e9a2c1fb",
+            "unit": "%",
+            "value": 4,
+            "width": 14
+          }
+        ],
+        "initial": {
+          "code": "console.log(context.panel.data, context.panel.response, context.panel.initial, context.panel.elements);\n\nreturn;\n\n/**\n * Data Source\n * Requires form elements to be defined\n */\nconst dataQuery = context.utils.toDataQueryResponse(context.panel.response);\nconsole.log(dataQuery);",
+          "contentType": "application/json",
+          "datasource": "grafana-postgresql-datasource-1",
+          "getPayload": "return {}",
+          "highlight": true,
+          "highlightColor": "blue",
+          "method": "-",
+          "payload": {},
+          "url": "http://localhost:3001/"
+        },
+        "layout": {
+          "orientation": "vertical",
+          "padding": 10,
+          "sectionVariant": "default",
+          "sections": [
+            {
+              "id": "general",
+              "name": ""
+            },
+            {
+              "id": "supply_voltage",
+              "name": "Supply Voltage"
+            },
+            {
+              "id": "line_current",
+              "name": "Line Current"
+            },
+            {
+              "id": "",
+              "name": ""
+            }
+          ],
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "secondary"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.locationService.reload();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "secondary"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "sync": false,
+        "update": {
+          "code": "const table = \"thresholds\";\r\n// Constants derived from the provided configuration\r\nconst max_v = parseFloat(document.getElementById('max_v')?.value);\r\nconst voltage_imbalance = parseFloat(document.getElementById('voltage_imbalance')?.value);\r\nconst warning_current = parseFloat(document.getElementById('warning_current')?.value);\r\nconst trip_off_current = parseFloat(document.getElementById('trip_off_current')?.value);\r\nconst kVAR_max = parseFloat(document.getElementById('kVAR_max')?.value);\r\nconst kVAR_imbalance = parseFloat(document.getElementById('kVAR_imbalance')?.value);\r\nconst kW_max = parseFloat(document.getElementById('kW_max')?.value);\r\nconst kW_imbalance = parseFloat(document.getElementById('kW_imbalance')?.value);\r\nconst pf_max = parseFloat(document.getElementById('pf_max')?.value);\r\nconst vTHD_limit = parseFloat(document.getElementById('vTHD_limit')?.value);\r\nconst iTHD_limit = parseFloat(document.getElementById('iTHD_limit')?.value);\r\n\r\n// Prepare the data payload\r\nconst data = {\r\n  table: \"thresholds\", // Specify the target table for the API\r\n  max_v,\r\n  voltage_imbalance,\r\n  warning_current,\r\n  trip_off_current,\r\n  kVAR_max,\r\n  kVAR_imbalance,\r\n  kW_max,\r\n  kW_imbalance,\r\n  pf_max,\r\n  vTHD_limit,\r\n  iTHD_limit\r\n};\r\n\r\n// Send the data to the API\r\nfetch('http://localhost:3001/', {\r\n  method: 'POST',\r\n  headers: {\r\n    'Content-Type': 'application/json',\r\n  },\r\n  body: JSON.stringify(data),\r\n})\r\n  .then(response => {\r\n    if (response.ok) {\r\n      context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\r\n      context.grafana.locationService.reload();\r\n    } else {\r\n      context.grafana.notifyError(['Update', 'An error occurred updating values.']);\r\n    }\r\n  })\r\n  .catch(error => {\r\n    context.grafana.notifyError(['Update', 'Error occurred: ' + error.message]);\r\n  });\r\n",
+          "confirm": true,
+          "contentType": "application/json",
+          "datasource": "grafana-postgresql-datasource-1",
+          "getPayload": "const payload = {};\n\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n\n  payload[element.id] = element.value;\n})\n\nreturn payload;",
+          "header": [],
+          "method": "POST",
+          "payload": {
+            "editorMode": "builder",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "SELECT user_id, kwh_rate, target_usage FROM user_inputs LIMIT 50 ",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [
+                    {
+                      "name": "user_id",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                },
+                {
+                  "parameters": [
+                    {
+                      "name": "kwh_rate",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                },
+                {
+                  "parameters": [
+                    {
+                      "name": "target_usage",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "user_inputs"
+          },
+          "payloadMode": "all",
+          "url": "http://localhost:3001/"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "4.8.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-static-datasource",
+            "uid": "ee3snnhkpmfb4d"
+          },
+          "frame": {
+            "fields": [],
+            "meta": {}
+          },
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-static-datasource",
+            "uid": "ee3snnhkpmfb4d"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Set Thresholds",
+      "type": "volkovlabs-form-panel"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "ce6nm5hf7a2v4e",
+          "value": "ce6nm5hf7a2v4e"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "fe3yvu0my4ruoa"
+        },
+        "definition": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "hide": 2,
+        "name": "pg_uid",
+        "options": [],
+        "query": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "Settings",
+          "value": "Settings"
+        },
+        "hide": 2,
+        "label": "Pages",
+        "name": "Pages",
+        "options": [
+          {
+            "selected": false,
+            "text": "Main Dashboard",
+            "value": "Main Dashboard"
+          },
+          {
+            "selected": true,
+            "text": "Settings",
+            "value": "Settings"
+          },
+          {
+            "selected": false,
+            "text": "Hourly Metrics",
+            "value": "Hourly Metrics"
+          },
+          {
+            "selected": false,
+            "text": "Minutely Metrics",
+            "value": "Minutely Metrics"
+          }
+        ],
+        "query": "Main Dashboard, Settings, Hourly Metrics, Minutely Metrics",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "Admin",
+          "value": "Admin"
+        },
+        "hide": 2,
+        "name": "User",
+        "options": [
+          {
+            "selected": true,
+            "text": "Admin",
+            "value": "Admin"
+          },
+          {
+            "selected": false,
+            "text": "Tenant 1",
+            "value": "Tenant 1"
+          },
+          {
+            "selected": false,
+            "text": "Tenant 2",
+            "value": "Tenant 2"
+          },
+          {
+            "selected": false,
+            "text": "Tenant 3",
+            "value": "Tenant 3"
+          },
+          {
+            "selected": false,
+            "text": "Tenant 4",
+            "value": "Tenant 4"
+          },
+          {
+            "selected": false,
+            "text": "Tenant 5",
+            "value": "Tenant 5"
+          }
+        ],
+        "query": "Admin, Tenant 1, Tenant 2, Tenant 3, Tenant 4, Tenant 5",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "1",
+          "value": "1"
+        },
+        "hide": 2,
+        "label": "Meter ID",
+        "name": "meter_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          },
+          {
+            "selected": false,
+            "text": "2",
+            "value": "2"
+          },
+          {
+            "selected": false,
+            "text": "3",
+            "value": "3"
+          },
+          {
+            "selected": false,
+            "text": "4",
+            "value": "4"
+          },
+          {
+            "selected": false,
+            "text": "5",
+            "value": "5"
+          }
+        ],
+        "query": "1, 2, 3, 4, 5",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "browser",
+  "title": "Settings",
+  "uid": "ce6nm5hf7a2v4e",
+  "version": 125,
+  "weekStart": ""
+}

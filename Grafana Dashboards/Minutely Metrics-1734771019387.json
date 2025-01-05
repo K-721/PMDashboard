@@ -1,0 +1,164 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 65,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ae2w4y8cxm134d"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
+        "dashboardVariable": "pg_uid",
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "Pages"
+      },
+      "pluginVersion": "3.6.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "volkovlabs-variable-panel"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "Minutely Metrics",
+          "value": "Minutely Metrics"
+        },
+        "hide": 2,
+        "label": "Pages",
+        "name": "Pages",
+        "options": [
+          {
+            "selected": false,
+            "text": "Main Dashboard",
+            "value": "Main Dashboard"
+          },
+          {
+            "selected": false,
+            "text": "Settings",
+            "value": "Settings"
+          },
+          {
+            "selected": false,
+            "text": "Hourly Metrics",
+            "value": "Hourly Metrics"
+          },
+          {
+            "selected": true,
+            "text": "Minutely Metrics",
+            "value": "Minutely Metrics"
+          }
+        ],
+        "query": "Main Dashboard, Settings, Hourly Metrics, Minutely Metrics",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "ce6ns05hyyzuof",
+          "value": "ce6ns05hyyzuof"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "fe3yvu0my4ruoa"
+        },
+        "definition": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "name": "pg_uid",
+        "options": [],
+        "query": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Minutely Metrics",
+  "uid": "ce6ns05hyyzuof",
+  "version": 5,
+  "weekStart": ""
+}
