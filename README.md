@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Power Consumption Real-Time Monitoring Dashboard (PMDashboard)** is a proof-of-concept tool for real-time monitoring of energy usage in industrial applications. It enables users to visualize key metrics such as energy usage, cost, savings, and efficiency. With scalability in mind, the dashboard supports both admin and tenant views and provides customized alerting and predictive maintenance monitoring.
+The **Energy Usage Real-Time Monitoring Dashboard (PMDashboard)** is a proof-of-concept tool for real-time monitoring of energy usage in industrial applications. It enables users to visualize key metrics such as energy usage, cost, savings, and efficiency. With scalability in mind, the dashboard supports both admin and tenant views and provides customized alerting and predictive maintenance monitoring.
 
 ---
 
