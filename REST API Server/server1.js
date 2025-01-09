@@ -146,67 +146,79 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.method === 'POST' && req.url === '/poprate') {
-    console.log('POST request received for poprate');
+// Function to extract time from ISO date-time string
+const extractTime = (dateTimeString) => {
+  const timeMatch = dateTimeString.match(/T(\d{2}:\d{2}:\d{2})/);
+  return timeMatch ? timeMatch[1] : null;
+};
 
-    let body = '';
+if (req.method === 'POST' && req.url === '/poprate') {
+  console.log('POST request received for poprate');
 
-    req.on('data', (chunk) => {
-      body += chunk;
-    });
+  let body = '';
 
-    req.on('end', async () => {
-      try {
-        const values = JSON.parse(body);
-        console.log('Received data for poprate:', values);
+  req.on('data', (chunk) => {
+    body += chunk;
+  });
 
-        // Validate required fields
-        const requiredFields = [
-          'meter_id', // Meter ID
-          'peak_rate', // Peak rate
-          'off_peak_rate', // Off-peak rate
-          'peak_hour_start', // Peak hour start time
-          'peak_hour_end', // Peak hour end time
-          'off_peak_start', // Off-peak start time
-          'off_peak_end', // Off-peak end time
-        ];
-        const missingFields = requiredFields.filter(
-          (field) => !Object.hasOwn(values, field) || values[field] === null
-        );
+  req.on('end', async () => {
+    try {
+      const values = JSON.parse(body);
+      console.log('Received data for poprate:', values);
 
-        if (missingFields.length > 0) {
-          res.writeHead(400, { 'Content-Type': 'application/json' });
-          res.end(
-            JSON.stringify({
-              message: `Missing required fields: ${missingFields.join(', ')}`,
-            })
-          );
-          return;
-        }
+      // Extract time from date-time strings
+      values.peak_hour_start = extractTime(values.peak_hour_start);
+      values.peak_hour_end = extractTime(values.peak_hour_end);
+      values.off_peak_hour_start = extractTime(values.off_peak_hour_start);
+      values.off_peak_hour_end = extractTime(values.off_peak_hour_end);
 
-        const columns = Object.keys(values).join(', ');
-        const params = Object.values(values);
-        const placeholders = Object.keys(values)
-          .map((_, i) => `$${i + 1}`)
-          .join(', ');
+      // Validate required fields
+      const requiredFields = [
+        'meter_id', // Meter ID
+        'peak_rate', // Peak rate
+        'off_peak_rate', // Off-peak rate
+        'peak_hour_start', // Peak hour start time
+        'peak_hour_end', // Peak hour end time
+        'off_peak_hour_start', // Off-peak start time
+        'off_peak_hour_end', // Off-peak end time
+      ];
+      const missingFields = requiredFields.filter(
+        (field) => !Object.hasOwn(values, field) || values[field] === null
+      );
 
-        const query = `INSERT INTO poprate(${columns}) VALUES(${placeholders})`;
-
-        await client.query(query, params);
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
+      if (missingFields.length > 0) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
         res.end(
-          JSON.stringify({ message: 'Data inserted successfully into poprate' })
+          JSON.stringify({
+            message: `Missing required fields: ${missingFields.join(', ')}`,
+          })
         );
-      } catch (err) {
-        console.error('Error processing poprate:', err);
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Error inserting data into poprate' }));
+        return;
       }
-    });
 
-    return;
-  }
+      const columns = Object.keys(values).join(', ');
+      const params = Object.values(values);
+      const placeholders = Object.keys(values)
+        .map((_, i) => `$${i + 1}`)
+        .join(', ');
+
+      const query = `INSERT INTO poprate(${columns}) VALUES(${placeholders})`;
+
+      await client.query(query, params);
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(
+        JSON.stringify({ message: 'Data inserted successfully into poprate' })
+      );
+    } catch (err) {
+      console.error('Error processing poprate:', err);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ message: 'Error inserting data into poprate' }));
+    }
+  });
+
+  return;
+}
 
   console.log('No matching route found');
   res.writeHead(404, { 'Content-Type': 'application/json' });
