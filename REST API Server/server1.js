@@ -146,6 +146,68 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === 'POST' && req.url === '/poprate') {
+    console.log('POST request received for poprate');
+
+    let body = '';
+
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    req.on('end', async () => {
+      try {
+        const values = JSON.parse(body);
+        console.log('Received data for poprate:', values);
+
+        // Validate required fields
+        const requiredFields = [
+          'meter_id', // Meter ID
+          'peak_rate', // Peak rate
+          'off_peak_rate', // Off-peak rate
+          'peak_hour_start', // Peak hour start time
+          'peak_hour_end', // Peak hour end time
+          'off_peak_start', // Off-peak start time
+          'off_peak_end', // Off-peak end time
+        ];
+        const missingFields = requiredFields.filter(
+          (field) => !Object.hasOwn(values, field) || values[field] === null
+        );
+
+        if (missingFields.length > 0) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(
+            JSON.stringify({
+              message: `Missing required fields: ${missingFields.join(', ')}`,
+            })
+          );
+          return;
+        }
+
+        const columns = Object.keys(values).join(', ');
+        const params = Object.values(values);
+        const placeholders = Object.keys(values)
+          .map((_, i) => `$${i + 1}`)
+          .join(', ');
+
+        const query = `INSERT INTO poprate(${columns}) VALUES(${placeholders})`;
+
+        await client.query(query, params);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(
+          JSON.stringify({ message: 'Data inserted successfully into poprate' })
+        );
+      } catch (err) {
+        console.error('Error processing poprate:', err);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Error inserting data into poprate' }));
+      }
+    });
+
+    return;
+  }
+
   console.log('No matching route found');
   res.writeHead(404, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ message: 'Not Found' }));
