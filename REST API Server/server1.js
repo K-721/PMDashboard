@@ -166,15 +166,10 @@ if (req.method === 'POST' && req.url === '/poprate') {
       const values = JSON.parse(body);
       console.log('Received data for poprate:', values);
 
-      // Extract time from date-time strings
-      values.peak_hour_start = extractTime(values.peak_hour_start);
-      values.peak_hour_end = extractTime(values.peak_hour_end);
-      values.off_peak_hour_start = extractTime(values.off_peak_hour_start);
-      values.off_peak_hour_end = extractTime(values.off_peak_hour_end);
-
       // Validate required fields
       const requiredFields = [
         'meter_id', // Meter ID
+        'day', // Meter ID        
         'peak_rate', // Peak rate
         'off_peak_rate', // Off-peak rate
         'peak_hour_start', // Peak hour start time
