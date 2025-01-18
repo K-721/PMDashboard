@@ -13,6 +13,7 @@ with open('meters_config.json', 'r') as f:
 
 # Define the function
 def read_and_store_data(meter):
+    meter_id = meter['meter_id']  # Get meter ID from the passed meter object
 
     # Database connection
     conn = psycopg2.connect(
@@ -75,7 +76,7 @@ def read_and_store_data(meter):
 
     # Prepare values to insert
     insert_values = (
-        datetime.now(), 1,  # Assuming meter_id is 1; replace as needed
+        datetime.now(), meter_id,
         data["voltage_ab"], data["voltage_bc"], data["voltage_ca"],
         data["voltage_a"], data["voltage_b"], data["voltage_c"],
         data["current_a"], data["current_b"], data["current_c"],
@@ -124,7 +125,6 @@ def read_and_store_data(meter):
     conn.close()
     client.close()
     print("Connection closed.")
-
 
 # Main function to fetch data from all meters simultaneously
 def fetch_all_meters_data():
