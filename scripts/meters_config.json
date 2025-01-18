@@ -1,0 +1,26 @@
+{
+  "meters": [
+    {
+      "meter_id": 1,
+      "ip_address": "192.168.68.221",
+      "port": 502,
+      "registers": {
+        "current_a": 2999,
+        "voltage_ab": 3019,
+        "frequency": 3109,
+        "power_factor_a": 3077,
+        "active_power_a": 3053,
+        "active_power_total": 3059,
+        "reactive_power_a": 3061,
+        "reactive_power_total": 3067,
+        "apparent_power_a": 3069,
+        "apparent_power_total": 3075,
+        "thd_current_a": 21299,
+        "thd_voltage_ll": 21327,
+        "active_energy_delivered": 2699,
+        "reactive_energy_delivered": 2707,
+        "apparent_energy_delivered": 2715
+      }
+    }
+  ]
+}
