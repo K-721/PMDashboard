@@ -1,4 +1,6 @@
 from pymodbus.client import ModbusTcpClient
+from update_db import fetch_latest_measurements, update_status_header
+from calculations import perform_all_calculations
 import psycopg2
 from datetime import datetime
 import struct
@@ -90,17 +92,6 @@ def read_and_store_data(meter):
         data["thd_current_a"], data["thd_current_a"], data["thd_current_a"]
     )
 
-    # Log the values to be inserted
-    # print("Inserting the following data into the database:")
-    # for idx, field in enumerate([
-    #     "timestamp", "meter_id", "v_ab", "v_bc", "v_ca", "v_a", "v_b", "v_c",
-    #     "i_a", "i_b", "i_c", "freq", "pf_a", "pf_b", "pf_c", "kw_a", "kw_b", "kw_c",
-    #     "kw_total", "kvar_a", "kvar_b", "kvar_c", "kvar_total", "kva_a", "kva_b",
-    #     "kva_c", "kva_total", "kWh", "kvarh", "kvah", "thd_v_ab", "thd_v_bc",
-    #     "thd_v_ca", "thd_v_a", "thd_v_b", "thd_v_c", "thd_i_a", "thd_i_b", "thd_i_c"
-    # ]):
-    #     print(f"{field}: {insert_values[idx]}")
-
     # Insert data into live_measurements table
     insert_query = """
         INSERT INTO live_measurements (
@@ -128,15 +119,39 @@ def read_and_store_data(meter):
 
 # Main function to fetch data from all meters simultaneously
 def fetch_all_meters_data():
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        future_to_meter = {executor.submit(read_and_store_data, meter): meter for meter in meters_config['meters']}
-        
-        for future in concurrent.futures.as_completed(future_to_meter):
+    # Loop through all meters in the config
+    for meter in meters_config['meters']:
+        meter_id = meter['meter_id']
+    try:
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future_to_meter = {executor.submit(read_and_store_data, meter): meter for meter in meters_config['meters']}
+            
+            # Safely handle future database operations separately to avoid interruptions
             try:
-                future.result()  # No need to print anything as the function already logs success
+                conn = psycopg2.connect(
+                    host="localhost",
+                    database="postgres",
+                    user="postgres",
+                    password="password",
+                    port=5433
+                )
+                latest_measurement = fetch_latest_measurements(conn)  # Use the connection here
+                calculations = perform_all_calculations(latest_measurement)
+                update_status_header(conn, meter_id, calculations)
             except Exception as e:
+                print(f"Error in database operations: {e}")
+            finally:
+                if 'conn' in locals() and conn:
+                    conn.close()  # Ensure the connection is closed
+            
+            for future in concurrent.futures.as_completed(future_to_meter):
                 meter = future_to_meter[future]
-                print(f"Error reading from meter {meter['meter_id']}: {e}")
+                try:
+                    future.result()  # Executes read_and_store_data
+                except Exception as e:
+                    print(f"Error reading from meter {meter['meter_id']}: {e}")
+    except Exception as e:
+        print(f"Critical error in fetch_all_meters_data: {e}")
 
 # Schedule the fetching of data every minute
 schedule.every(1).minute.do(fetch_all_meters_data)
@@ -145,3 +160,4 @@ schedule.every(1).minute.do(fetch_all_meters_data)
 while True:
     schedule.run_pending()
     time.sleep(1)  # Check if a job is due every second
+
