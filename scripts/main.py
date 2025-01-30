@@ -1,6 +1,6 @@
 from pymodbus.client import ModbusTcpClient
-from update_db import fetch_latest_measurements, update_status_header, update_pred_maintenance, update_stats_panel, fetch_user_inputs, fetch_live_measurements, fetch_kwh_data, fetch_last_two_kwh_rows
 from calculations import perform_all_calculations
+from update_db import fetch_latest_measurements, update_status_header, update_pred_maintenance, update_stats_panel, fetch_user_inputs, fetch_kwh_data 
 from datetime import datetime
 import psycopg2, struct, schedule, time, json, concurrent.futures
 
@@ -150,12 +150,12 @@ def fetch_all_meters_data():
                     # Fetch the latest measurements
                     latest_measurement = fetch_latest_measurements(conn)
                     user_inputs = fetch_user_inputs(conn)
-                    live_measurements = fetch_live_measurements(conn)
+                    #live_measurements = fetch_live_measurements(conn)
                     kwh_data = fetch_kwh_data(conn)
                     #last_two_kwh = fetch_last_two_kwh_rows(conn)
 
                     # Perform all necessary calculations based on the latest measurements
-                    calculations = perform_all_calculations(latest_measurement, user_inputs, live_measurements, kwh_data)
+                    calculations = perform_all_calculations(latest_measurement, user_inputs, kwh_data)
 
                     # Update tables with the calculations
                     for meter in meters_config['meters']:

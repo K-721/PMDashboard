@@ -37,31 +37,6 @@ def fetch_user_inputs(conn):
         else:
             return None
 
-
-# Function to fetch the last two kWh readings
-def fetch_last_two_kwh_rows(conn):
-    query = """
-    SELECT timestamp, kwh
-    FROM live_measurements
-    ORDER BY timestamp DESC
-    LIMIT 2
-    """
-    with conn.cursor() as cursor:
-        cursor.execute(query)
-        column_names = [desc[0] for desc in cursor.description]  # Get column names
-        result = cursor.fetchall()  # Fetch all rows
-        
-        if result:
-            # Ensure last_two_kwh is a list of dictionaries
-            last_two_kwh = []
-            for row in result:
-                row_dict = {column_names[i]: row[i] for i in range(len(column_names))}
-                last_two_kwh.append(row_dict)
-            return last_two_kwh
-        else:
-            return []
-
-# Function to fetch all kWh rows for the current month
 def fetch_kwh_data(conn):
     query = """
     SELECT timestamp, diff_kwh
@@ -85,26 +60,6 @@ def fetch_kwh_data(conn):
         else:
             return []
 
-        
-def fetch_live_measurements(conn):
-    query = """
-    SELECT timestamp, meter_id, v_ab, v_bc, v_ca, v_a, v_b, v_c,
-        i_a, i_b, i_c, freq, pf_a, pf_b, pf_c, kw_a, kw_b, kw_c,
-        kw_total, kvar_a, kvar_b, kvar_c, kvar_total, kva_a, kva_b, kva_c, kva_total,
-        kwh, kvarh, kvah, thd_v_ab, thd_v_bc, thd_v_ca, thd_v_a, thd_v_b, thd_v_c, thd_i_a, thd_i_b, thd_i_c, diff_kwh
-    FROM live_measurements
-    ORDER BY timestamp DESC
-    """
-    
-    with conn.cursor() as cursor:
-        cursor.execute(query)
-        column_names = [desc[0] for desc in cursor.description]  # Get column names
-        result = cursor.fetchall()
-        if result:
-            live_measurements = dict(zip(column_names, result))
-            return live_measurements
-        else:
-            return None
 
 def update_status_header(conn, meter_id, calculations):
     query = """
@@ -176,23 +131,6 @@ def update_pred_maintenance(conn, meter_id, latest_measurement):
     )
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-# ON CONFLICT (meter_id) 
-# DO UPDATE SET
-#     latest_v_ab = EXCLUDED.latest_v_ab,
-#     latest_v_bc = EXCLUDED.latest_v_bc,
-#     latest_v_ca = EXCLUDED.latest_v_ca,
-#     latest_i_a = EXCLUDED.latest_i_a,
-#     latest_i_b = EXCLUDED.latest_i_b,
-#     latest_i_c = EXCLUDED.latest_i_c,
-#     latest_pf_a = EXCLUDED.latest_pf_a,
-#     latest_pf_b = EXCLUDED.latest_pf_b,
-#     latest_pf_c = EXCLUDED.latest_pf_c,
-#     latest_vthd_a = EXCLUDED.latest_vthd_a,
-#     latest_vthd_b = EXCLUDED.latest_vthd_b,
-#     latest_vthd_c = EXCLUDED.latest_vthd_c,
-#     latest_ithd_a = EXCLUDED.latest_ithd_a,
-#     latest_ithd_b = EXCLUDED.latest_ithd_b,
-#     latest_ithd_c = EXCLUDED.latest_ithd_c;
      
     values = (
         meter_id,
