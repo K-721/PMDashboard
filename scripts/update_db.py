@@ -1,14 +1,10 @@
-import psycopg2
 
 def fetch_latest_measurements(conn):
-    """
-    Fetch the latest measurements from the live_measurements table.
-    Returns a dictionary for easy access to named columns.
-    """
     query = """
-        SELECT meter_id, v_a, v_b, v_c, i_a, i_b, i_c, kvar_a, kvar_b, kvar_c,
-               kw_a, kw_b, kw_c, pf_a, pf_b, pf_c,
-               thd_v_a, thd_v_b, thd_v_c, thd_i_a, thd_i_b, thd_i_c
+        SELECT meter_id, v_ab, v_bc, v_ca, v_a, v_b, v_c,
+            i_a, i_b, i_c, freq, pf_a, pf_b, pf_c, kw_a, kw_b, kw_c,
+            kw_total, kvar_a, kvar_b, kvar_c, kvar_total, kva_a, kva_b, kva_c, kva_total,
+            kwh, kvarh, kvah, thd_v_ab, thd_v_bc, thd_v_ca, thd_v_a, thd_v_b, thd_v_c, thd_i_a, thd_i_b, thd_i_c
         FROM live_measurements
         ORDER BY timestamp DESC
         LIMIT 1
@@ -23,26 +19,26 @@ def fetch_latest_measurements(conn):
         else:
             return None
 
-def fetch_live_measurements(conn):
+
+def fetch_user_inputs(conn):
     query = """
-    SELECT timestamp, meter_id, v_ab, v_bc, v_ca, v_a, v_b, v_c,
-        i_a, i_b, i_c, freq, pf_a, pf_b, pf_c, kw_a, kw_b, kw_c,
-        kw_total, kvar_a, kvar_b, kvar_c, kvar_total, kva_a, kva_b, kva_c, kva_total,
-        kwh, kvarh, kvah, thd_v_ab, thd_v_bc, thd_v_ca, thd_v_a, thd_v_b, thd_v_c, thd_i_a, thd_i_b, thd_i_c
-    FROM live_measurements
-    ORDER BY timestamp DESC
+        SELECT user_id, kwh_rate, target_usage
+        FROM user_inputs
+        ORDER BY created_at DESC
+        LIMIT 1
     """
-    
     with conn.cursor() as cursor:
         cursor.execute(query)
         column_names = [desc[0] for desc in cursor.description]  # Get column names
-        result = cursor.fetchall()
+        result = cursor.fetchone()
         if result:
-            live_measurements = dict(zip(column_names, result))
-            return live_measurements
+            user_inputs = dict(zip(column_names, result))
+            return user_inputs
         else:
             return None
 
+
+# Function to fetch the last two kWh readings
 def fetch_last_two_kwh_rows(conn):
     query = """
     SELECT timestamp, kwh
@@ -65,11 +61,11 @@ def fetch_last_two_kwh_rows(conn):
         else:
             return []
 
+# Function to fetch all kWh rows for the current month
 def fetch_kwh_data(conn):
     query = """
-    SELECT timestamp, kwh
+    SELECT timestamp, diff_kwh
     FROM live_measurements
-    WHERE EXTRACT(MONTH FROM timestamp) = EXTRACT(MONTH FROM CURRENT_DATE)
     ORDER BY timestamp DESC
     """
     
@@ -89,20 +85,24 @@ def fetch_kwh_data(conn):
         else:
             return []
 
-def fetch_user_inputs(conn):
+        
+def fetch_live_measurements(conn):
     query = """
-        SELECT user_id, kwh_rate, target_usage
-        FROM user_inputs
-        ORDER BY created_at DESC
-        LIMIT 1
+    SELECT timestamp, meter_id, v_ab, v_bc, v_ca, v_a, v_b, v_c,
+        i_a, i_b, i_c, freq, pf_a, pf_b, pf_c, kw_a, kw_b, kw_c,
+        kw_total, kvar_a, kvar_b, kvar_c, kvar_total, kva_a, kva_b, kva_c, kva_total,
+        kwh, kvarh, kvah, thd_v_ab, thd_v_bc, thd_v_ca, thd_v_a, thd_v_b, thd_v_c, thd_i_a, thd_i_b, thd_i_c, diff_kwh
+    FROM live_measurements
+    ORDER BY timestamp DESC
     """
+    
     with conn.cursor() as cursor:
         cursor.execute(query)
         column_names = [desc[0] for desc in cursor.description]  # Get column names
-        result = cursor.fetchone()
+        result = cursor.fetchall()
         if result:
-            user_inputs = dict(zip(column_names, result))
-            return user_inputs
+            live_measurements = dict(zip(column_names, result))
+            return live_measurements
         else:
             return None
 
@@ -139,3 +139,81 @@ DO UPDATE SET
     conn.commit()
     print("Upserting status_header with values: %s", values)
 
+def update_stats_panel(conn, meter_id, calculations):
+    query = """
+    INSERT INTO stats_panel (
+        meter_id, total_energy_usage, total_cost, ave_efficiency, prev_bill, proj_usage,
+        proj_cost, proj_savings, curr_monthly_usage, proj_monthly_usage, ave_monthly_usage
+    )
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+    values = (
+        meter_id,
+        #calculations['diff_kwh'],
+        calculations['total_energy_usage'],
+        calculations['total_cost'],
+        calculations['ave_efficiency'],
+        calculations['prev_bill'],
+        calculations['proj_usage'],
+        calculations['proj_cost'],
+        calculations['proj_savings'],
+        calculations['curr_monthly_usage'],
+        calculations['proj_monthly_usage'],
+        calculations['ave_monthly_usage']
+    )
+    
+    with conn.cursor() as cursor:
+        cursor.execute(query, values)
+    conn.commit()
+    print("Inserting stats_panel with values: %s", values)
+
+def update_pred_maintenance(conn, meter_id, latest_measurement):
+    query = """
+    INSERT INTO pred_maintenance (
+        meter_id, latest_v_ab, latest_v_bc, latest_v_ca, latest_i_a, latest_i_b, latest_i_c,
+        latest_pf_a, latest_pf_b, latest_pf_c, latest_vthd_a, latest_vthd_b, latest_vthd_c,
+        latest_ithd_a, latest_ithd_b, latest_ithd_c
+    )
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+# ON CONFLICT (meter_id) 
+# DO UPDATE SET
+#     latest_v_ab = EXCLUDED.latest_v_ab,
+#     latest_v_bc = EXCLUDED.latest_v_bc,
+#     latest_v_ca = EXCLUDED.latest_v_ca,
+#     latest_i_a = EXCLUDED.latest_i_a,
+#     latest_i_b = EXCLUDED.latest_i_b,
+#     latest_i_c = EXCLUDED.latest_i_c,
+#     latest_pf_a = EXCLUDED.latest_pf_a,
+#     latest_pf_b = EXCLUDED.latest_pf_b,
+#     latest_pf_c = EXCLUDED.latest_pf_c,
+#     latest_vthd_a = EXCLUDED.latest_vthd_a,
+#     latest_vthd_b = EXCLUDED.latest_vthd_b,
+#     latest_vthd_c = EXCLUDED.latest_vthd_c,
+#     latest_ithd_a = EXCLUDED.latest_ithd_a,
+#     latest_ithd_b = EXCLUDED.latest_ithd_b,
+#     latest_ithd_c = EXCLUDED.latest_ithd_c;
+     
+    values = (
+        meter_id,
+        latest_measurement['v_ab'],
+        latest_measurement['v_bc'],
+        latest_measurement['v_ca'],
+        latest_measurement['i_a'],
+        latest_measurement['i_b'],
+        latest_measurement['i_c'],
+        latest_measurement['pf_a'],
+        latest_measurement['pf_b'],
+        latest_measurement['pf_c'],
+        latest_measurement['thd_v_a'],
+        latest_measurement['thd_v_b'],
+        latest_measurement['thd_v_c'],
+        latest_measurement['thd_i_a'],
+        latest_measurement['thd_i_b'],
+        latest_measurement['thd_i_c']
+    )
+    
+    with conn.cursor() as cursor:
+        cursor.execute(query, values)
+    conn.commit()
+    print("Inserting pred_maintenance with values: %s", values)
