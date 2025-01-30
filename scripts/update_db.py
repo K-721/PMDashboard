@@ -23,6 +23,89 @@ def fetch_latest_measurements(conn):
         else:
             return None
 
+def fetch_live_measurements(conn):
+    query = """
+    SELECT timestamp, meter_id, v_ab, v_bc, v_ca, v_a, v_b, v_c,
+        i_a, i_b, i_c, freq, pf_a, pf_b, pf_c, kw_a, kw_b, kw_c,
+        kw_total, kvar_a, kvar_b, kvar_c, kvar_total, kva_a, kva_b, kva_c, kva_total,
+        kwh, kvarh, kvah, thd_v_ab, thd_v_bc, thd_v_ca, thd_v_a, thd_v_b, thd_v_c, thd_i_a, thd_i_b, thd_i_c
+    FROM live_measurements
+    ORDER BY timestamp DESC
+    """
+    
+    with conn.cursor() as cursor:
+        cursor.execute(query)
+        column_names = [desc[0] for desc in cursor.description]  # Get column names
+        result = cursor.fetchall()
+        if result:
+            live_measurements = dict(zip(column_names, result))
+            return live_measurements
+        else:
+            return None
+
+def fetch_last_two_kwh_rows(conn):
+    query = """
+    SELECT timestamp, kwh
+    FROM live_measurements
+    ORDER BY timestamp DESC
+    LIMIT 2
+    """
+    with conn.cursor() as cursor:
+        cursor.execute(query)
+        column_names = [desc[0] for desc in cursor.description]  # Get column names
+        result = cursor.fetchall()  # Fetch all rows
+        
+        if result:
+            # Ensure last_two_kwh is a list of dictionaries
+            last_two_kwh = []
+            for row in result:
+                row_dict = {column_names[i]: row[i] for i in range(len(column_names))}
+                last_two_kwh.append(row_dict)
+            return last_two_kwh
+        else:
+            return []
+
+def fetch_kwh_data(conn):
+    query = """
+    SELECT timestamp, kwh
+    FROM live_measurements
+    WHERE EXTRACT(MONTH FROM timestamp) = EXTRACT(MONTH FROM CURRENT_DATE)
+    ORDER BY timestamp DESC
+    """
+    
+    with conn.cursor() as cursor:
+        cursor.execute(query)
+        column_names = [desc[0] for desc in cursor.description]  # Get column names
+        result = cursor.fetchall()  # Fetch all rows
+        
+        if result:
+            # Convert each row to a dictionary
+            kwh_data = []
+            for row in result:
+                row_dict = {column_names[i]: row[i] for i in range(len(column_names))}
+                kwh_data.append(row_dict)
+                
+            return kwh_data
+        else:
+            return []
+
+def fetch_user_inputs(conn):
+    query = """
+        SELECT user_id, kwh_rate, target_usage
+        FROM user_inputs
+        ORDER BY created_at DESC
+        LIMIT 1
+    """
+    with conn.cursor() as cursor:
+        cursor.execute(query)
+        column_names = [desc[0] for desc in cursor.description]  # Get column names
+        result = cursor.fetchone()
+        if result:
+            user_inputs = dict(zip(column_names, result))
+            return user_inputs
+        else:
+            return None
+
 def update_status_header(conn, meter_id, calculations):
     query = """
     INSERT INTO status_header (
