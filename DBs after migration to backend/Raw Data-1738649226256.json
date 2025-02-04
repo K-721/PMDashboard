@@ -1,0 +1,301 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 17,
+  "links": [],
+  "panels": [
+    {
+      "description": "A proof-of-concept dashboard designed for real-time monitoring of energy usage and costs, enabling data-driven decisions to optimize power efficiency in industrial settings.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 20,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"display: flex; align-items: center; height: 100%;\">\n  <h1 style=\"font-family: 'Inter', sans-serif; font-weight: 600; font-size: 2em; color: #d3d3d3; margin: 0;\">\n    Energy Usage Real-Time Monitoring Dashboard\n  </h1>\n</div>\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.3.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
+        "dashboardVariable": "pg_uid",
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "Pages"
+      },
+      "pluginVersion": "3.6.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "timestamp"
+          }
+        ]
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "be3kz7ctdto1sf"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n    timestamp, meter_ID, v_ab, v_bc, v_ca,\r\n    i_a, i_b, i_c, freq, pf_a, pf_b, pf_c, \r\n    kw_a, kw_b, kw_c, kw_total, \r\n    kvar_a, kvar_b, kvar_c, kvar_total, \r\n    kva_a, kva_b, kva_c, kva_total, \r\n    kWh, kvarh, kvah, \r\n    thd_v_ab, thd_v_bc, thd_v_ca, \r\n    thd_i_a, thd_i_b, thd_i_c \r\nFROM live_measurements\r\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo();\r\n\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Live Measurements",
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "bebweapj605xca",
+          "value": "bebweapj605xca"
+        },
+        "definition": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "hide": 2,
+        "name": "pg_uid",
+        "options": [],
+        "query": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "Raw Data",
+          "value": "Raw Data"
+        },
+        "description": "",
+        "hide": 2,
+        "label": "Pages",
+        "name": "Pages",
+        "options": [
+          {
+            "selected": false,
+            "text": "Main Dashboard",
+            "value": "Main Dashboard"
+          },
+          {
+            "selected": false,
+            "text": "Settings",
+            "value": "Settings"
+          },
+          {
+            "selected": false,
+            "text": "Drill-down Data",
+            "value": "Drill-down Data"
+          },
+          {
+            "selected": true,
+            "text": "Raw Data",
+            "value": "Raw Data"
+          }
+        ],
+        "query": "Main Dashboard, Settings, Drill-down Data, Raw Data",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Raw Data",
+  "uid": "bebweapj605xca",
+  "version": 12,
+  "weekStart": ""
+}

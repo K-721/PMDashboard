@@ -1,0 +1,1685 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 8,
+  "links": [],
+  "panels": [
+    {
+      "description": "A proof-of-concept dashboard designed for real-time monitoring of energy usage and costs, enabling data-driven decisions to optimize power efficiency in industrial settings.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 14,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"display: flex; align-items: center; height: 100%;\">\n  <h1 style=\"font-family: 'Inter', sans-serif; font-weight: 600; font-size: 2em; color: #d3d3d3; margin: 0;\">\n    Energy Usage Real-Time Monitoring Dashboard\n  </h1>\n</div>\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.3.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 14,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "addQuery": {},
+          "datasource": "",
+          "deleteQuery": {},
+          "enabled": false,
+          "getQuery": {},
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "interval"
+      },
+      "pluginVersion": "3.6.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 17,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "addQuery": {},
+          "datasource": "",
+          "deleteQuery": {},
+          "enabled": false,
+          "getQuery": {},
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "meter_id"
+      },
+      "pluginVersion": "3.6.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
+        "dashboardVariable": "pg_uid",
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "Pages"
+      },
+      "pluginVersion": "3.6.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 2
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(v_ab) AS phase_ab,  -- Average of phase AB voltage\r\n    AVG(v_bc) AS phase_bc,  -- Average of phase BC voltage\r\n    AVG(v_ca) AS phase_ca   -- Average of phase CA voltage\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND\r\n     meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "be3kz7ctdto1sf"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT max_v\r\nFROM thresholds\r\nORDER BY timestamp DESC\r\nLIMIT 1;",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Supply Voltage (V)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.4,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 4,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "phase_a"
+            },
+            "properties": [
+              {
+                "id": "custom.barAlignment",
+                "value": -1
+              },
+              {
+                "id": "custom.barWidthFactor",
+                "value": 0.4
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "phase_b"
+            },
+            "properties": [
+              {
+                "id": "custom.barAlignment",
+                "value": 0
+              },
+              {
+                "id": "custom.barWidthFactor",
+                "value": 0.4
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "phase_c"
+            },
+            "properties": [
+              {
+                "id": "custom.barAlignment",
+                "value": 1
+              },
+              {
+                "id": "custom.barWidthFactor",
+                "value": 0.4
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 2
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(thd_v_a) AS phase_a,                -- Average THD for voltage in phase A\r\n    AVG(thd_v_b) AS phase_b,                -- Average THD for voltage in phase B\r\n    AVG(thd_v_c) AS phase_c                 -- Average THD for voltage in phase C\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Voltage Total Harmonic Distortion (%)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(i_a) AS phase_a,                    -- Average for phase A current\r\n    AVG(i_b) AS phase_b,                    -- Average for phase B current\r\n    AVG(i_c) AS phase_c                     -- Average for phase C current\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Line Current (A)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-yellow",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 4,
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "phase_a"
+            },
+            "properties": [
+              {
+                "id": "custom.barAlignment",
+                "value": -1
+              },
+              {
+                "id": "custom.barWidthFactor",
+                "value": 0.4
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "phase_b"
+            },
+            "properties": [
+              {
+                "id": "custom.barAlignment",
+                "value": 0
+              },
+              {
+                "id": "custom.barWidthFactor",
+                "value": 0.4
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "phase_c"
+            },
+            "properties": [
+              {
+                "id": "custom.barAlignment",
+                "value": 1
+              },
+              {
+                "id": "custom.barWidthFactor",
+                "value": 0.4
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(thd_i_a) AS phase_a,                -- Average THD for current in phase A\r\n    AVG(thd_i_b) AS phase_b,                -- Average THD for current in phase B\r\n    AVG(thd_i_c) AS phase_c                 -- Average THD for current in phase C\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Current Total Harmonic Distortion (%)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": -1.05,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 4,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(pf_a) AS phase_a,                   -- Average power factor for phase A\r\n    AVG(pf_b) AS phase_b,                   -- Average power factor for phase B\r\n    AVG(pf_c) AS phase_c                    -- Average power factor for phase C\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Power Factor",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    SUM(ABS(kwh)) AS total_kwh\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Total Energy Usage (kWh)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": -1.2,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(kvar_a) AS phase_a,                 -- Average reactive power for phase A\r\n    AVG(kvar_b) AS phase_b,                 -- Average reactive power for phase B\r\n    AVG(kvar_c) AS phase_c                  -- Average reactive power for phase C\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Reactive Power (kVAR)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-green",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 26
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    SUM(kvar_total) AS total_kvar           -- Total reactive power for each hour\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Total Reactive Power (kVAR)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    AVG(kw_a) AS phase_a,                   -- Average active power for phase A\r\n    AVG(kw_b) AS phase_b,                   -- Average active power for phase B\r\n    AVG(kw_c) AS phase_c                    -- Average active power for phase C\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Active Power (kW)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "be3kz7ctdto1sf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-yellow",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 34
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "fe3yvu0my4ruoa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CASE\r\n        WHEN '${interval}' LIKE '%m' THEN\r\n            date_trunc('minute', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 60\r\n            )  -- Apply minute-based interval (e.g., 5m, 10m, etc.)\r\n        WHEN '${interval}' LIKE '%h' THEN\r\n            date_trunc('hour', timestamp) + INTERVAL '1 second' * (\r\n                CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) * 3600\r\n            )  -- Apply hourly interval (e.g., 6h)\r\n        WHEN '${interval}' LIKE '%d' THEN\r\n            date_trunc('day', timestamp)  -- Apply daily interval (1d)\r\n        WHEN '${interval}' LIKE '%w' THEN\r\n            date_trunc('week', timestamp)  -- Apply weekly interval (7d)\r\n        ELSE\r\n            date_trunc('minute', timestamp)  -- Default to minute interval if no match\r\n    END AS time_interval,\r\n    SUM(kw_total) AS total_kw               -- Total active power for each hour\r\nFROM\r\n    live_measurements\r\nWHERE\r\n    --DATE_TRUNC('month', timestamp) = DATE_TRUNC('month', CURRENT_DATE)  -- Filter for the current month\r\n    --AND \r\n    meter_id = ${meter_id}  -- Filter for selected meter_id\r\n    AND (\r\n        ( '${interval}' LIKE '%m' AND extract(minute from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N minutes\r\n        OR\r\n        ( '${interval}' LIKE '%h' AND extract(hour from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N hours\r\n        OR\r\n        ( '${interval}' LIKE '%d' AND extract(day from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N days\r\n        OR\r\n        ( '${interval}' LIKE '%w' AND extract(week from timestamp)::integer % CAST(SUBSTRING('${interval}' FROM 1 FOR LENGTH('${interval}') - 1) AS INT) = 0 )  -- Select every N weeks\r\n    )\r\nGROUP BY\r\n    time_interval  -- Group by the dynamic time interval\r\nORDER BY\r\n    time_interval;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Total Active Power (kW)",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "Drill-down Data",
+          "value": "Drill-down Data"
+        },
+        "hide": 2,
+        "label": "Pages",
+        "name": "Pages",
+        "options": [
+          {
+            "selected": false,
+            "text": "Main Dashboard",
+            "value": "Main Dashboard"
+          },
+          {
+            "selected": false,
+            "text": "Settings",
+            "value": "Settings"
+          },
+          {
+            "selected": true,
+            "text": "Drill-down Data",
+            "value": "Drill-down Data"
+          },
+          {
+            "selected": false,
+            "text": "Raw Data",
+            "value": "Raw Data"
+          }
+        ],
+        "query": "Main Dashboard, Settings, Drill-down Data, Raw Data",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "fe6nrxvj7f30ga",
+          "value": "fe6nrxvj7f30ga"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "be3kz7ctdto1sf"
+        },
+        "definition": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "description": "",
+        "hide": 2,
+        "name": "pg_uid",
+        "options": [],
+        "query": "SELECT pg_uid FROM pages WHERE pg_name='$Pages'",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "30m",
+          "value": "30m"
+        },
+        "hide": 2,
+        "label": "Interval",
+        "name": "interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": true,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          }
+        ],
+        "query": "1m,5m,10m,30m,1h,6h,12h,1d,7d",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "1",
+          "value": "1"
+        },
+        "definition": "SELECT meter_id FROM live_measurements;",
+        "description": "",
+        "hide": 2,
+        "label": "Meter ID",
+        "name": "meter_id",
+        "options": [],
+        "query": "SELECT meter_id FROM live_measurements;",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Drill-down Data",
+  "uid": "fe6nrxvj7f30ga",
+  "version": 148,
+  "weekStart": ""
+}
